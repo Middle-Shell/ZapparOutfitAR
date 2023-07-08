@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class ScaleObjectWithPinch : MonoBehaviour
 {
     private Vector2 m_initialTouch1Pos;
@@ -12,6 +12,7 @@ public class ScaleObjectWithPinch : MonoBehaviour
     private Touch m_touch2;
     private Vector2 m_currentTouch1Pos;
     private Vector2 m_currentTouch2Pos;
+    [SerializeField] private Image _imageSignal;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class ScaleObjectWithPinch : MonoBehaviour
     {
         if (Input.touchCount == 2) // Проверка наличия двух касаний (щипка)
         {
+            _imageSignal.color = Color.green;
             m_touch1 = Input.GetTouch(0);
             m_touch2 = Input.GetTouch(1);
 
