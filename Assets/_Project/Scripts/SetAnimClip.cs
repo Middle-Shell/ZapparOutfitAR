@@ -13,12 +13,14 @@ public class SetAnimClip : MonoBehaviour
     void Start()
     {
         m_animator = GetComponent<Animator>();
-        PlayClipFromFrame(m_animationClip, m_frame);
+        PlayClipFromFrame(m_animationClip);
+        
     }
 
-    private void PlayClipFromFrame(AnimationClip animationClip, int frame)
+    private void PlayClipFromFrame(AnimationClip animationClip)
     {
+        m_frame = UnityEngine.Random.Range(0, 120);
         float frameTime = animationClip.length / animationClip.frameRate;
-        m_animator.Play(animationClip.name, 0, frameTime * frame);
+        m_animator.Play(animationClip.name, 0, frameTime * m_frame);
     }
 }

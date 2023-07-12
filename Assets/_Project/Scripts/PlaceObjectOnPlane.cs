@@ -7,7 +7,6 @@ public class PlaceObjectOnPlane : MonoBehaviour
 {
     public GameObject objectToPlace;
     public Camera arCamera; // Камера для отслеживания взаимодействия
-    [SerializeField] private Image _imageSignal;
 
     void Update()
     {
@@ -18,10 +17,8 @@ public class PlaceObjectOnPlane : MonoBehaviour
 
         if (touch.phase == TouchPhase.Moved && Input.touchCount == 1) // Проверка начала касания
         {
-            _imageSignal.color = Color.red;
             Ray ray = arCamera.ScreenPointToRay(touch.position);
 
-            _imageSignal.color = Color.blue;
             if (Physics.Raycast(ray, out var hit)) // Проверка пересечения луча и объекта
             {
                 if (hit.transform.CompareTag("Plane")) // Проверка, что пересечение произошло с плоскостью
