@@ -9,6 +9,6 @@ public class SetPosition : MonoBehaviour
     public void SetTransformPosition()
     {
         m_target.transform.position = this.transform.position;
-        m_target.transform.localScale = this.transform.localScale;
+        //m_target.transform.localScale = this.transform.localScale;
     }
 }
