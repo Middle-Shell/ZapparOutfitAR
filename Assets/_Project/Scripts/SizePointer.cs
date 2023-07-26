@@ -14,6 +14,6 @@ public class SizePointer : MonoBehaviour
     void LateUpdate()
     {
         _scale = Vector3.Distance(transform.position, _cameraTransform.position);
-        transform.localScale = Vector3.one * _scale * _size;
+        //transform.localScale = Vector3.one * _scale * _size;
     }
 }

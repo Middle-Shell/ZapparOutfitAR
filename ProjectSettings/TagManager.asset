@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Plane
   - point
+  - Box
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Box
   - Water
   - UI
   - Draw
