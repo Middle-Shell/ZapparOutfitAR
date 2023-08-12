@@ -31,7 +31,7 @@ public class RayPaint : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, paintableLayer))
             {
                 Renderer hitRenderer = hit.collider.GetComponent<Renderer>();
-                Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
+                Debug.DrawRay(ray.origin, ray.direction * 100, Color.green);
 
                 if (hitRenderer != null)
                 {
@@ -39,7 +39,7 @@ public class RayPaint : MonoBehaviour
                     print(pixelUV);
 
                     // Применяем рисование на временную текстуру
-                    PaintOnTexture(tempTexture, pixelUV, brushSize, Color.blue);
+                    PaintOnTexture(tempTexture, pixelUV, brushSize, new Color(0.2f, 0.01f, 0.38f, 1));
 
                     // Применяем изменения из временной текстуры на текущую
                     currentTexture.SetPixels(tempTexture.GetPixels());
