@@ -7,46 +7,49 @@ public class RayPaint : MonoBehaviour
     public float brushSize = 0.1f;
     public LayerMask paintableLayer;
 
-    private MaterialPropertyBlock propBlock;
-    private Texture2D currentTexture;
-    private Texture2D tempTexture;
-
+    private MaterialPropertyBlock m_propBlock;
+    private Texture2D m_currentTexture;
+    private Texture2D m_tempTexture;
+    private Renderer m_hitRenderer;
+    private RaycastHit m_hit;
+    private Ray m_ray;
+    private Vector2 m_pixelUV;
+    
     private void Start()
     {
-        propBlock = new MaterialPropertyBlock();
+        m_propBlock = new MaterialPropertyBlock();
         Renderer renderer = GetComponent<Renderer>();
-        currentTexture = renderer.material.mainTexture as Texture2D;
-        tempTexture = new Texture2D(currentTexture.width, currentTexture.height);
-        PaintOnTexture(tempTexture, Vector2.one, 1, new Color(0,0,0,0));
+        m_currentTexture = renderer.material.mainTexture as Texture2D;
+        m_tempTexture = new Texture2D(m_currentTexture.width, m_currentTexture.height);
+        PaintOnTexture(m_tempTexture, Vector2.one, 1, new Color(0,0,0,0));
     }
 
     private void Update()
     {
         if (Input.GetMouseButton(0))
         {
-            Vector2 centerScreenPoint = new Vector2(Screen.width / 2, Screen.height / 2);
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            //Vector2 centerScreenPoint = new Vector2(Screen.width / 2, Screen.height / 2);
+            m_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, paintableLayer))
+            if (Physics.Raycast(m_ray, out m_hit, Mathf.Infinity, paintableLayer))
             {
-                Renderer hitRenderer = hit.collider.GetComponent<Renderer>();
-                Debug.DrawRay(ray.origin, ray.direction * 100, Color.green);
+                m_hitRenderer = m_hit.collider.GetComponent<Renderer>();
+                Debug.DrawRay(m_ray.origin, m_ray.direction * 100, Color.green);
 
-                if (hitRenderer != null)
+                if (m_hitRenderer != null)
                 {
-                    Vector2 pixelUV = hit.textureCoord;
-                    print(pixelUV);
+                    m_pixelUV = m_hit.textureCoord;
 
                     // Применяем рисование на временную текстуру
-                    PaintOnTexture(tempTexture, pixelUV, brushSize, new Color(0.2f, 0.01f, 0.38f, 1));
+                    PaintOnTexture(m_tempTexture, m_pixelUV, brushSize, new Color(0.2f, 0.01f, 0.38f, 1));
 
                     // Применяем изменения из временной текстуры на текущую
-                    currentTexture.SetPixels(tempTexture.GetPixels());
-                    currentTexture.Apply();
+                    m_currentTexture.SetPixels(m_tempTexture.GetPixels());
+                    m_currentTexture.Apply();
 
-                    propBlock.SetTexture("_MainTex", currentTexture);
-                    hitRenderer.SetPropertyBlock(propBlock);
+                    m_propBlock.SetTexture("_MainTex", m_currentTexture);
+                    m_hitRenderer.SetPropertyBlock(m_propBlock);
                 }
             }
         }
