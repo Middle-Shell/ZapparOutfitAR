@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/_Project/Scenes/Test.unity
+    path: Assets/_Project/Scenes/Fish.unity
     guid: cfcfbbcdd62a9d94f9e89c8cdc116c19
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
