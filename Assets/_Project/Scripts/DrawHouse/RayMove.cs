@@ -26,15 +26,25 @@ public class RayPaint : MonoBehaviour
     private Vector2 m_centerScreenPoint;
     private Color m_paintColor;
 
-    
-    private void Start()
+    void Start()
     {
+        Texture2D texture = new Texture2D(128, 128);
+        GetComponent<Renderer>().material.mainTexture = texture;
+
+        for (int y = 0; y < texture.height; y++)
+        {
+            for (int x = 0; x < texture.width; x++)
+            {
+                Color color = Color.cyan;
+                texture.SetPixel(x, y, color);
+            }
+        }
+        texture.Apply();
         SwitchColor("1");
         m_propBlock = new MaterialPropertyBlock();
         Renderer renderer = GetComponent<Renderer>();
         m_currentTexture = renderer.material.mainTexture as Texture2D;
         m_tempTexture = new Texture2D(m_currentTexture.width, m_currentTexture.height);
-        PaintOnTexture(m_tempTexture, Vector2.one, 1, new Color(1,1,1,1));
         m_totalPixels = m_currentTexture.width * m_currentTexture.height;
         m_centerScreenPoint = new Vector2(Screen.width / 2, Screen.height / 2);
         _slider.onValueChanged.AddListener(delegate { SwitchBrushSize(); });

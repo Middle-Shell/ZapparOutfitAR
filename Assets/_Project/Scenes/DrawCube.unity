@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_MinValue: 0.001
   m_MaxValue: 0.05
   m_WholeNumbers: 0
-  m_Value: 0.01
+  m_Value: 0.05
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1927,7 +1927,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578648085}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -8.34, z: 8.16}
+  m_LocalPosition: {x: 0, y: -5.95, z: 8.16}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2695,7 +2695,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 794560776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.21, y: 2.44, z: 7.28}
+  m_LocalPosition: {x: -2.03, y: -5.27, z: 17.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8376,6 +8376,10 @@ PrefabInstance:
       propertyPath: _slider
       value: 
       objectReference: {fileID: 170842023}
+    - target: {fileID: 7376600429412922650, guid: 36b2e9b686ba16941ab8c899c51e3e9d, type: 3}
+      propertyPath: brushSize
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7376600429412922650, guid: 36b2e9b686ba16941ab8c899c51e3e9d, type: 3}
       propertyPath: _finalButton
       value: 
