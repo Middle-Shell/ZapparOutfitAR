@@ -47,11 +47,11 @@ public class RayPaint : MonoBehaviour
         //if (Input.GetMouseButton(0))
         {
             m_ray = _camera.ScreenPointToRay(m_centerScreenPoint);//Input.mousePosition);
-
+            Debug.DrawRay(m_ray.origin, m_ray.direction * 100, Color.green);
             if (Physics.Raycast(m_ray, out m_hit, Mathf.Infinity, paintableLayer))
             {
                 m_hitRenderer = m_hit.collider.GetComponent<Renderer>();
-                Debug.DrawRay(m_ray.origin, m_ray.direction * 100, Color.green);
+                //Debug.DrawRay(m_ray.origin, m_ray.direction * 100, Color.green);
 
                 if (m_hitRenderer != null)
                 {
@@ -79,12 +79,8 @@ public class RayPaint : MonoBehaviour
     {
         int centerX = Mathf.FloorToInt(center.x * texture.width);
         int centerY = Mathf.FloorToInt(center.y * texture.height);
-        //print(m_currentTexture.GetPixel(centerX, centerY));
-        print(CompareColor(color, m_currentTexture.GetPixel(centerX, centerY)));
         if (CompareColor(color, m_currentTexture.GetPixel(centerX, centerY)))
         {
-            
-            print("--------------------");
             return;
         }
 
@@ -120,7 +116,6 @@ public class RayPaint : MonoBehaviour
             // Проверяем процент закрашенных пикселей
             float paintedPercentage = (m_paintedPixels * 100f) / m_totalPixels;
             _percentText.text = "Закрашено - " + ((int) paintedPercentage > 100 ? 100 : (int) paintedPercentage) + "%";
-            //Debug.Log("Object is painted " + paintedPercentage.ToString("0.00") + "%");
             yield return new WaitForSeconds(2f);
             if (paintedPercentage >= requiredPercentage)
             {
