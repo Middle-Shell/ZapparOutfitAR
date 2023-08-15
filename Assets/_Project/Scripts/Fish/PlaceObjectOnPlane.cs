@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class PlaceObjectOnPlane : MonoBehaviour
 {
-    public GameObject objectToPlace;
-    public Camera arCamera; // Камера для отслеживания взаимодействия
+    [SerializeField] private GameObject objectToPlace;
+    [SerializeField] private List<GameObject> _builds;
+    [SerializeField] private GameObject SelectPanel;
+    [SerializeField] private GameObject DrawPanel;
+    [SerializeField] private Camera arCamera; // Камера для отслеживания взаимодействия
 
     void Update()
     {
@@ -27,5 +30,13 @@ public class PlaceObjectOnPlane : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SelectBuild(int num)
+    {
+        objectToPlace = _builds[num];
+        objectToPlace.SetActive(true);
+        SelectPanel.SetActive(false);
+        DrawPanel.SetActive(true);
     }
 }

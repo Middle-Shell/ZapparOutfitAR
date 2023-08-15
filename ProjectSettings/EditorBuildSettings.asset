@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/FreeDraw/ExampleDrawingScene.unity
     guid: 4ce4d4d4aeef2e54e97bb40827915db8
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Project/Scenes/puzzle.unity
     guid: b92f446b581b0ec499d7a09644001e13
+  - enabled: 1
+    path: Assets/_Project/Scenes/DrawCube.unity
+    guid: 45c8e84da433b1b4bb1847b2daeb901c
   m_configObjects: {}
